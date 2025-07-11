@@ -1,0 +1,74 @@
+﻿@model IEnumerable<RosondVehicleLeasing.Models.Vehicle>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<p>
+    @Html.ActionLink("Vehicle Allocation", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Branch.BranchName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Client.CompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Driver.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Supplier.SupplierName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Make)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProcumentDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Branch.BranchName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Client.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Driver.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Supplier.SupplierName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Make)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Model)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProcumentDate)
+        </td>
+        <td>
+            @Html.ActionLink("Manage", "Edit", new { id = item.VehicleId }, new { @class = "btn btn-primary btn-sm" })
+            @Html.ActionLink("Details", "Details", new { id = item.VehicleId }, new { @class = "btn btn-info btn-sm text-white" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.VehicleId }, new { @class = "btn btn-danger btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    var vehicleManufacturers = ViewBag.Manufacturers as List<string>;
+}
+
+<main>
+    <section class="row" aria-labelledby="aspnetTitle">
+        <h1 id="title">Rosond Vehicle Leasing</h1>
+    </section>
+
+    <div class="row">
+
+        @* Report Filters *@
+        <div class="mb-3">
+            <label for="reportFilter" class="form-label fw-bold">Filter By:</label>
+            <select class="form-select w-auto d-inline-block" id="reportFilter" onchange="filterTables()">
+                <option value="all">All</option>
+                <option value="supplier">Supplier</option>
+                <option value="branch">Branch</option>
+                <option value="client">Client</option>
+            </select>
+        </div>
+
+        @* Data Tables *@
+        <div id="branchTable">
+            <h3>By Branch</h3>
+            <table class="table table-bordered table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th>Branch</th>
+                        @foreach (var make in vehicleManufacturers)
+                        {
+                            <th>@make</th>
+                        }
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.Branches as List<RosondVehicleLeasing.Models.VehicleManufacturerVM>)
+                    {
+                        <tr>
+                            <td>@item.Group</td>
+                            @foreach (var make in vehicleManufacturers)
+                            {
+                                <td>@(item.VehicleManCount.ContainsKey(make) ? item.VehicleManCount[make] : 0)</td>
+                            }
+                            <td>@item.Total</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div id="clientTable">
+            <h3>By Client</h3>
+            <table class="table table-bordered table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th>Client</th>
+                        @foreach (var make in vehicleManufacturers)
+                        {
+                            <th>@make</th>
+                        }
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.Clients as List<RosondVehicleLeasing.Models.VehicleManufacturerVM>)
+                    {
+                        <tr>
+                            <td>@item.Group</td>
+                            @foreach (var make in vehicleManufacturers)
+                            {
+                                <td>@(item.VehicleManCount.ContainsKey(make) ? item.VehicleManCount[make] : 0)</td>
+                            }
+                            <td>@item.Total</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div id="supplierTable">
+            <h3>By Supplier</h3>
+            <table class="table table-bordered table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th>Supplier</th>
+                        @foreach (var make in vehicleManufacturers)
+                        {
+                            <th>@make</th>
+                        }
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.Suppliers as List<RosondVehicleLeasing.Models.VehicleManufacturerVM>)
+                    {
+                        <tr>
+                            <td>@item.Group</td>
+                            @foreach (var make in vehicleManufacturers)
+                            {
+                                <td>@(item.VehicleManCount.ContainsKey(make) ? item.VehicleManCount[make] : 0)</td>
+                            }
+                            <td>@item.Total</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>
+<!-- JS: Filter dropdown handler -->
+<script>
+    function filterTables() {
+        var value = document.getElementById("reportFilter").value;
+
+        document.getElementById("supplierTable").style.display = (value === "all" || value === "supplier") ? "block" : "none";
+        document.getElementById("branchTable").style.display = (value === "all" || value === "branch") ? "block" : "none";
+        document.getElementById("clientTable").style.display = (value === "all" || value === "client") ? "block" : "none";
+    }
+
+    document.addEventListener("DOMContentLoaded", filterTables);
+</script>
