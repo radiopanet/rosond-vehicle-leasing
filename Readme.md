@@ -24,6 +24,7 @@ A web-based application for managing vehicle fleets, built with ASP.NET MVC, Ent
 4. Update the connection string in `Web.config`
 5. Unzip the `RosondVehicleLeasingDB` file to get the db backup
 6. Restore the database using SQL Server Management Studio (SSMS):
+7. ERD included in the root folder of the project.
 
 
 
