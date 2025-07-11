@@ -22,7 +22,8 @@ A web-based application for managing vehicle fleets, built with ASP.NET MVC, Ent
 2. Open `RosondVehicleLeasing.sln` in Visual Studio
 3. Restore NuGet packages
 4. Update the connection string in `Web.config`
-5. Restore the database using SQL Server Management Studio (SSMS):
+5. Unzip the `RosondVehicleLeasingDB` file to get the db backup
+6. Restore the database using SQL Server Management Studio (SSMS):
 
 
 
